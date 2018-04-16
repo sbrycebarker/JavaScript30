@@ -58,6 +58,25 @@
       };
     }
 
+    const sliderImages = document.querySelectorAll('.slide-in')
+
+    function checkSlide(e) {
+      sliderImages.forEach(sliderImage => {
+        const slideInAt = (window.scrollY + window.innerHeight);
+        sliderImage.height / 2;
+      const imageBottom = sliderImage.offsetTop + sliderImage.height
+      const isHalfShown = slideInAt > sliderImage.offsetTop;
+      const isNotScrolledPast = window.scrolly < imageBottom;
+      if(isHalfShown && isNotScrolledPast) {
+        sliderImage.classList.add('active')
+      } else {
+        sliderImage.classList.remove('active')
+      }
+      })
+    }
+
+    window.addEventListener('scroll', checkSlide)
+
   </script>
 
   <style>
@@ -108,13 +127,13 @@
     .align-right.slide-in {
       transform:translateX(30%) scale(0.95);
     }
-
     .slide-in.active {
       opacity:1;
       transform:translateX(0%) scale(1);
     }
 
   </style>
+
 
 </body>
 </html>
